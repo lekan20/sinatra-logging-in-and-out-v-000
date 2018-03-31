@@ -11,6 +11,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
+    #finds the user in the database by their username and send them to the account page if they exist.
     if @user = User.find_by(username: params["username"])
       session[:user_id] = @user.id
       #add the user id to the session
@@ -26,6 +27,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/logout' do
+    #clears the session
     session.clear
     redirect '/'
   end
